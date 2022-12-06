@@ -56,6 +56,8 @@ const auth_header = 'Basic ' + new Buffer.from(auth_string).toString('base64');
     // which stops when there are only 2 or fewer connections remaining.
     await page.goto(url, { waitUntil: 'networkidle0' });
 
+    await page.setContent((await response.buffer()).toString('utf8'));
+
     // Hide all panel description (top-left "i") pop-up handles and, all panel resize handles
     // Annoyingly, it seems you can't concatenate the two object collections into one
     await page.evaluate(() => {
