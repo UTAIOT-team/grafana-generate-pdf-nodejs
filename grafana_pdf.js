@@ -29,6 +29,7 @@ const auth_header = 'Basic ' + new Buffer.from(auth_string).toString('base64');
       headless: true,
       // for docker few folks had issues. so added below line
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      ignoreHTTPSErrors: true
     });
     
     const page = await browser.newPage();
