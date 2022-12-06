@@ -18,13 +18,17 @@ rem set GF_TIME=""
 echo "%GF_TIME%"
 rem set GF_DASH_URL="https://192.168.2.3:3000/d/vEfuJfmgk/sheng-chan-su-du?orgId=2"
 rem set GF_DASH_URL="https://192.168.2.3:3000/d/vasKTID7k/ai4?orgId=2"
-set GF_DASH_URL=https://192.168.2.3:3000/d/qpmBM6kRz/select?orgId=2^&var-machine=me8
+set GF_DASH_URL=https://192.168.2.3:3000/d/xZyQRvRgz/mei-ri-chan-chu-tong-ji-biao-ge?orgId=2
 set GF_USER=admin
 set GF_PASSWORD=admin
-set OUTPUT_PDF=./output/output_%yy%%mm%%dd%.pdf
+set OUTPUT_PDF=./output/%yy%%mm%%dd%_daily_quantity_form.pdf
 
 echo "%GF_DASH_URL%%GF_TIME%" %GF_USER%:%GF_PASSWORD% %OUTPUT_PDF%
 node grafana_pdf.js "%GF_DASH_URL%%GF_TIME%" %GF_USER%:%GF_PASSWORD% %OUTPUT_PDF%
+set GF_DASH_URL=https://192.168.2.3:3000/d/vx36urZRk/mei-ri-chan-chu-tong-ji-tu-biao?orgId=2
+set OUTPUT_PDF=./output/%yy%%mm%%dd%_history_quantity_line.pdf
+echo "%GF_DASH_URL%" %GF_USER%:%GF_PASSWORD% %OUTPUT_PDF%
+node grafana_pdf.js "%GF_DASH_URL%" %GF_USER%:%GF_PASSWORD% %OUTPUT_PDF%
 goto :EOF
 
 

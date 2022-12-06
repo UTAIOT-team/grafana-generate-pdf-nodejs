@@ -16,15 +16,13 @@ echo From:%from%000, To:%to%000
 set GF_TIME=^&from=%from%000^&to=%to%000
 rem set GF_TIME=""
 echo "%GF_TIME%"
-rem set GF_DASH_URL="https://192.168.2.3:3000/d/vEfuJfmgk/sheng-chan-su-du?orgId=2"
-rem set GF_DASH_URL="https://192.168.2.3:3000/d/vasKTID7k/ai4?orgId=2"
-set GF_DASH_URL=https://192.168.2.3:3000/d/qpmBM6kRz/select?orgId=2^&var-machine=me8
+set GF_DASH_URL="https://192.168.2.3:3000/d/nLFCnaWgk/report_single?orgId=2&from=1669852800000&to=1669939199999&var-machine=me11"
 set GF_USER=admin
 set GF_PASSWORD=admin
 set OUTPUT_PDF=./output/output_%yy%%mm%%dd%.pdf
 
-echo "%GF_DASH_URL%%GF_TIME%" %GF_USER%:%GF_PASSWORD% %OUTPUT_PDF%
-node grafana_pdf.js "%GF_DASH_URL%%GF_TIME%" %GF_USER%:%GF_PASSWORD% %OUTPUT_PDF%
+echo %GF_DASH_URL% %GF_USER%:%GF_PASSWORD% %OUTPUT_PDF%
+node grafana_png.js %GF_DASH_URL% %GF_USER%:%GF_PASSWORD% %OUTPUT_PDF%
 goto :EOF
 
 

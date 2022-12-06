@@ -13,7 +13,8 @@ const outfile = process.argv[4];
 
 // Set the browser width in pixels. The paper size will be calculated on the basus of 96dpi,
 // so 1200 corresponds to 12.5".
-const width_px = 1200;
+// const width_px = 1632;
+const width_px = 1754;
 // Note that to get an actual paper size, e.g. Letter, you will want to *not* simply set the pixel
 // size here, since that would lead to a "mobile-sized" screen (816px), and mess up the rendering.
 // Instead, set e.g. double the size here (1632px), and call page.pdf() with format: 'Letter' and
@@ -43,9 +44,9 @@ const auth_header = 'Basic ' + new Buffer.from(auth_string).toString('base64');
     // the same value as in page.pdf() below. The height is not important
     await page.setViewport({
       width: width_px,
-      // height: 1587,
-      height: 800,
-      deviceScaleFactor: 2,
+      height: 2480,
+    //   height: 2500,
+      deviceScaleFactor: 1,
       isMobile: false
     })
 
@@ -63,73 +64,56 @@ const auth_header = 'Basic ' + new Buffer.from(auth_string).toString('base64');
       for (el of resizeHandles) { el.hidden = true; };
     });
 
-    // Get the height of the main canvas, and add a margin
-    var height_px = await page.evaluate(() => {
-      return document.getElementsByClassName('react-grid-layout')[0].getBoundingClientRect().bottom;
-    }) + 20;
+    // // Get the height of the main canvas, and add a margin
+    // var height_px = await page.evaluate(() => {
+    //   return document.getElementsByClassName('react-grid-layout')[0].getBoundingClientRect().bottom;
+    // }) + 20;
 
-    // == auto scroll to the bottom to solve long grafana dashboard start
-    async function autoScroll(page) {
-      await page.evaluate(async () => {
-        await new Promise((resolve, reject) => {
-          var totalHeight = 0;
-          var distance = 100;
-          var height_px = document.getElementsByClassName('react-grid-layout')[0].getBoundingClientRect().bottom;
-          var timer = setInterval(() => {
-            var scrollHeight = height_px;
+    // // == auto scroll to the bottom to solve long grafana dashboard start
+    // async function autoScroll(page) {
+    //   await page.evaluate(async () => {
+    //     await new Promise((resolve, reject) => {
+    //       var totalHeight = 0;
+    //       var distance = 100;
+    //       var height_px = document.getElementsByClassName('react-grid-layout')[0].getBoundingClientRect().bottom;
+    //       var timer = setInterval(() => {
+    //         var scrollHeight = height_px;
 
-            // select the scrollable view
-            // in newer version of grafana the scrollable div is 'scrollbar-view'
-            var scrollableEl = document.querySelector('.view') || document.querySelector('.scrollbar-view');
-            // element.scrollBy(0, distance);
-            scrollableEl.scrollBy({
-              top: distance,
-              left: 0,
-              behavior: 'smooth'
-            });
+    //         // select the scrollable view
+    //         // in newer version of grafana the scrollable div is 'scrollbar-view'
+    //         var scrollableEl = document.querySelector('.view') || document.querySelector('.scrollbar-view');
+    //         // element.scrollBy(0, distance);
+    //         scrollableEl.scrollBy({
+    //           top: distance,
+    //           left: 0,
+    //           behavior: 'smooth'
+    //         });
 
-            totalHeight += distance;
+    //         totalHeight += distance;
 
-            console.log('totalHeight', totalHeight)
+    //         console.log('totalHeight', totalHeight)
 
-            if (totalHeight >= scrollHeight) {
-              clearInterval(timer);
-              resolve();
-            }
-          }, 300);
-        });
-      });
-    }
+    //         if (totalHeight >= scrollHeight) {
+    //           clearInterval(timer);
+    //           resolve();
+    //         }
+    //       }, 300);
+    //     });
+    //   });
+    // }
 
-    async function autoScroll(page){
-        await page.evaluate(async () => {
-            await new Promise((resolve) => {
-                var totalHeight = 0;
-                var distance = 100;
-                var timer = setInterval(() => {
-                    var scrollHeight = document.body.scrollHeight;
-                    window.scrollBy(0, distance);
-                    totalHeight += distance;
-    
-                    if(totalHeight >= scrollHeight){
-                        clearInterval(timer);
-                        resolve();
-                    }
-                }, 100);
-            });
-        });
-    }
-
-    await autoScroll(page);
-    // == auto scroll to the bottom to solve long grafana dashboard end
+    // await autoScroll(page);
+    // // == auto scroll to the bottom to solve long grafana dashboard end
     
     
     await page.pdf({
       path: outfile,
-      width: width_px + 'px',
-      height: height_px + 'px',
+    //   width: width_px + 'px',
+    //   height: height_px + 'px',
+    width: 1754 + 'px',
+    height: 2480 + 'px',
       //    format: 'Letter', <-- see note above for generating "paper-sized" outputs
-      format: 'A3',
+    //   format: 'A3',
       scale: 1,
       displayHeaderFooter: false,
       margin: {
@@ -139,6 +123,12 @@ const auth_header = 'Basic ' + new Buffer.from(auth_string).toString('base64');
         left: 0,
       },
     });
+
+    // await page.screenshot({
+    //   path: outfile,
+    //   fullPage: true,
+    // //   quality: 100,
+    // });
 
     await browser.close();
   } catch (error) {
