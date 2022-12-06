@@ -54,7 +54,7 @@ const auth_header = 'Basic ' + new Buffer.from(auth_string).toString('base64');
     // Wait until all network connections are closed (and none are opened withing 0.5s).
     // In some cases it may be appropriate to change this to {waitUntil: 'networkidle2'},
     // which stops when there are only 2 or fewer connections remaining.
-    await page.goto(url, { waitUntil: 'networkidle0' });
+    const response = await page.goto(url, { waitUntil: 'networkidle0' });
 
     await page.setContent((await response.buffer()).toString('utf8'));
 
