@@ -101,25 +101,6 @@ const auth_header = 'Basic ' + new Buffer.from(auth_string).toString('base64');
       });
     }
 
-    async function autoScroll(page){
-        await page.evaluate(async () => {
-            await new Promise((resolve) => {
-                var totalHeight = 0;
-                var distance = 100;
-                var timer = setInterval(() => {
-                    var scrollHeight = document.body.scrollHeight;
-                    window.scrollBy(0, distance);
-                    totalHeight += distance;
-    
-                    if(totalHeight >= scrollHeight){
-                        clearInterval(timer);
-                        resolve();
-                    }
-                }, 100);
-            });
-        });
-    }
-
     await autoScroll(page);
     // == auto scroll to the bottom to solve long grafana dashboard end
     
