@@ -25,10 +25,10 @@ echo $GF_TIME
 GF_DASH_URL="https://192.168.2.3:3000/d/nLFCnaWgk/report_single?orgId=2&var-machine=aj2"
 GF_USER="admin"
 GF_PASSWORD="admin"
-OUTPUT_PDF="./output/output_${vdate}.pdf"
+OUTPUT_PDF="./grafana_output/機台稼動明細/output_${vdate}.pdf"
 
 echo "$GF_DASH_URL$GF_TIME" $GF_USER:$GF_PASSWORD $OUTPUT_PDF
-node grafana_pdf.js "$GF_DASH_URL$GF_TIME" $GF_USER:$GF_PASSWORD $OUTPUT_PDF
+node grafana_A3.js "$GF_DASH_URL$GF_TIME" $GF_USER:$GF_PASSWORD $OUTPUT_PDF
 for str in ${machine[@]}; do
   echo $str
 done

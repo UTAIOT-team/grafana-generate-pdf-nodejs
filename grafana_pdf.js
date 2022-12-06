@@ -1,5 +1,6 @@
 'use strict';
 
+const fs = require('fs')
 const puppeteer = require('puppeteer');
 
 // URL to load should be passed as first parameter
