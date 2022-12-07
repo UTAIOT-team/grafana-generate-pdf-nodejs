@@ -109,10 +109,11 @@ const auth_header = 'Basic ' + new Buffer.from(auth_string).toString('base64');
     
     await page.pdf({
       path: outfile,
+      printBackground: true,
     //   width: width_px + 'px',
     //   height: height_px + 'px',
-    width: 1754 + 'px',
-    height: 2480 + 'px',
+      width: 1754 + 'px',
+      height: 2480 + 'px',
       //    format: 'Letter', <-- see note above for generating "paper-sized" outputs
     //   format: 'A3',
       scale: 1,
