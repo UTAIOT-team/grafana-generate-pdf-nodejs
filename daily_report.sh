@@ -44,4 +44,6 @@ for str in ${machine[@]}; do
   OUTPUT_PDF="./grafana_output/機台稼動明細/${vdate}/${str}.pdf"
   echo "$GF_DASH_URL$GF_TIME" $GF_USER:$GF_PASSWORD $OUTPUT_PDF
   node grafana_A3.js "$GF_DASH_URL$GF_TIME" $GF_USER:$GF_PASSWORD $OUTPUT_PDF
+
+  sleep 120
 done
