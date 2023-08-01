@@ -113,7 +113,7 @@ const auth_header = 'Basic ' + new Buffer.from(auth_string).toString('base64');
     //   width: width_px + 'px',
     //   height: height_px + 'px',
       width: 1754 + 'px',
-      height: 2480 + 'px',
+      height: 3480 + 'px',
       //    format: 'Letter', <-- see note above for generating "paper-sized" outputs
     //   format: 'A3',
       scale: 1,
