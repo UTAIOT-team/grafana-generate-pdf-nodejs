@@ -1,5 +1,5 @@
 #!/bin/bash
-machine=('mx5' 'mx13' 'mx14' 'mx15' 'me8' 'me9' 'me10' 'me11' 'mj2' 'mj3' 'mj4' 'mj5' 'ai1' 'ai2' 'ai4' 'aj2' 'ae1' 'ae2' 'ae5' 'ae6' 'ae7' 'ae8' 'ae9' 'ae10')
+machine=('mx5' 'mx13' 'mx14' 'mx15' 'me8' 'me9' 'me10' 'me11' 'mj2' 'mj3' 'mj4' 'mj5' 'ai1' 'ai2' 'ai4' 'aj2' 'al1' 'al2' 'ae1' 'ae2' 'ae5' 'ae6' 'ae7' 'ae8' 'ae9' 'ae10')
 
 if [ $1 ]
 then
