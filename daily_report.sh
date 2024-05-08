@@ -34,6 +34,6 @@ node $GF_SCRIPT "$GF_DASH_URL$GF_TIME" $GF_USER:$GF_PASSWORD $OUTPUT_PDF
 
 # machine
 GF_SCRIPT="/home/uta_iot/github_repo/grafana-generate-pdf-nodejs/grafana_machines.js"
-OUTPUT_PDF="./grafana_output/機台稼動明細/${vdate}/"
+OUTPUT_PDF="/home/uta_iot/grafana_output/機台稼動明細/${vdate}/"
 
 node $GF_SCRIPT "$GF_TIME" $GF_USER:$GF_PASSWORD $OUTPUT_PDF
