@@ -3,7 +3,8 @@
 set vdate=%~1
 set /a shift=0
 if not defined vdate (set vdate=%date:~0,4%%date:~5,2%%date:~8,2%& set /a shift=1)
-set yy=%vdate:~0,4%& set mm=%vdate:~4,2%& set /a dd=%vdate:~6,2% - %shift%
+set yy=%vdate:~0,4%& set mm=%vdate:~4,2%& set /a dd=(1%vdate:~6,2% - %shift%) %% 100
+if %dd% LSS 10 set dd=0%dd%
 echo %vdate%, %shift%
 echo %yy%/%mm%/%dd%
 
