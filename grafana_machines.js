@@ -42,9 +42,10 @@ const width_px = 1754;
 const auth_header = 'Basic ' + new Buffer.from(auth_string).toString('base64');
 
 (async () => {
+  let browser;
   try {
 
-    const browser = await puppeteer.launch({
+    browser = await puppeteer.launch({
       headless: true,
       // for docker few folks had issues. so added below line
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
@@ -159,6 +160,8 @@ const auth_header = 'Basic ' + new Buffer.from(auth_string).toString('base64');
   } catch (error) {
     console.error('An error occurred:', error);
   } finally {
-    await browser.close();
+    if (browser) {
+      await browser.close().catch(err => console.error('Failed to close browser:', err));
+    }
   }
 })();
