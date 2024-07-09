@@ -29,7 +29,7 @@ GF_PASSWORD="admin"
 
 # 生產數量
 OUTPUT_PDF="/home/uta_iot/grafana_output/生產統計表/${vdate}.pdf"
-GF_DASH_URL="https://192.168.2.3:3000/d/7zc-JJkRz/mei-ri-chan-chu-tong-ji-3?orgId=2"
+GF_DASH_URL="https://192.168.2.3:3000/d/7zc-JJkRz/mei-ri-chan-chu-tong-ji-3-1-json?orgId=2"
 node $GF_SCRIPT "$GF_DASH_URL$GF_TIME" $GF_USER:$GF_PASSWORD $OUTPUT_PDF
 
 # machine
